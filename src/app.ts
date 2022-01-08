@@ -25,7 +25,25 @@ const greetPerson = (person: IsPerson) => {
 greetPerson(me);
 console.log(me);
 
+// ------------ interface ------------
+
 import { Invoice } from "./classes/Invoice.js";
+import { Payments } from "./classes/Payments.js";
+import { HasFormatter } from "./interfaces/HasFormatter.js";
+
+let docOne: HasFormatter;
+let docTwo: HasFormatter;
+
+docOne = new Invoice('yoshi', 'web work', 250);
+docTwo = new Payments('luigi', 'plumbing work', 200);
+
+let docs: HasFormatter[] = [];
+docs.push(docOne);
+docs.push(docTwo);
+
+console.log(docs);
+
+// -------- interfaces with classes
 
 // instance
 const invOne = new Invoice('mario', 'work on the mario website', 250);
@@ -59,6 +77,15 @@ const amount = document.querySelector('#amount') as HTMLInputElement;
 
 form.addEventListener('submit', (e: Event) => {
     e.preventDefault();
+
+    let doc: HasFormatter;
+    if (type.value === 'invoice'){
+        doc = new Invoice(tofrom.value, details.value, amount.valueAsNumber)
+    } else {
+        doc = new Payments(tofrom.value, details.value, amount.valueAsNumber)
+    }
+
+    console.log(doc);
 
     console.log(
         type.value,

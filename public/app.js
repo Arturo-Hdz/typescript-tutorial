@@ -14,7 +14,18 @@ const greetPerson = (person) => {
 };
 greetPerson(me);
 console.log(me);
+// ------------ interface ------------
 import { Invoice } from "./classes/Invoice.js";
+import { Payments } from "./classes/Payments.js";
+let docOne;
+let docTwo;
+docOne = new Invoice('yoshi', 'web work', 250);
+docTwo = new Payments('luigi', 'plumbing work', 200);
+let docs = [];
+docs.push(docOne);
+docs.push(docTwo);
+console.log(docs);
+// -------- interfaces with classes
 // instance
 const invOne = new Invoice('mario', 'work on the mario website', 250);
 const invTwo = new Invoice('luigi', 'work on the luigi website', 300);
@@ -41,5 +52,13 @@ const details = document.querySelector('#details');
 const amount = document.querySelector('#amount');
 form.addEventListener('submit', (e) => {
     e.preventDefault();
+    let doc;
+    if (type.value === 'invoice') {
+        doc = new Invoice(tofrom.value, details.value, amount.valueAsNumber);
+    }
+    else {
+        doc = new Payments(tofrom.value, details.value, amount.valueAsNumber);
+    }
+    console.log(doc);
     console.log(type.value, tofrom.value, details.value, amount.valueAsNumber);
 });
